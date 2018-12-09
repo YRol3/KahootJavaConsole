@@ -16,6 +16,8 @@ And the 5 top players
 There is no limit for how many games is running at the same time nor how many 
 There is in each game
 
+<img src="https://i.imgur.com/Oi3UWkF.png"/>
+<img src="https://i.imgur.com/ijZDDcw.png"/>
 
 ## Installation
 
