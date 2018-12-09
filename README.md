@@ -22,7 +22,7 @@ There is in each game
 Client:
 
 ```sh
-Get all the server folder to your computer, and run the Main class
+Get all the client folder to your computer, and run the Main class
 If running from terminal/cmd go to the FinalProjectClient and run the command
 Java com.finalproject.Main
 
@@ -33,7 +33,7 @@ Quiz password: 123456
 Server:
 
 ```sh
-Get all the client folder to your computer, and run the Main class
+Get all the server folder to your computer, and run the Main class
 If running from terminal/cmd go to the FinalProject and run the command
 Java com.finalproject.Main
 
