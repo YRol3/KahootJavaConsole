@@ -18,6 +18,7 @@ There is in each game
 
 <img src="https://i.imgur.com/Oi3UWkF.png"/>
 <img src="https://i.imgur.com/ijZDDcw.png"/>
+<img src="https://i.imgur.com/iplkjIQ.png"/>
 
 ## Installation
 
