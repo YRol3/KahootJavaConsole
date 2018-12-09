@@ -25,6 +25,10 @@ Client:
 Get all the server folder to your computer, and run the Main class
 If running from terminal/cmd go to the FinalProjectClient and run the command
 Java com.finalproject.Main
+
+For example quiz you can run the quiz that saved in the project already
+Quiz name: kahoot
+Quiz password: 123456
 ```
 Server:
 
@@ -44,9 +48,6 @@ True if running from the inteli-J or false if running from the console/terminal
 This game can be used in classes as teacher game for students
 And cam be run as just some fun projects for your friends
 
-For example quiz you can run the quiz that saved in the project already
-Quiz name: kahoot
-Quiz password: 123456
 
 
 ## Meta
