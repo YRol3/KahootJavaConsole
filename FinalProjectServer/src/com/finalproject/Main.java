@@ -16,8 +16,9 @@ public class Main {
     public static List<Game> games = new ArrayList<>();
     public static void main(String[] args) {
         System.out.println("Successfully started the server");
+        ServerSocket serverSocket = null;
         try {
-            ServerSocket serverSocket = new ServerSocket(PORT);
+            serverSocket = new ServerSocket(PORT);
             while(running) {
                 Socket socket = serverSocket.accept();
                 ClientThread clientThread = new ClientThread(socket, (gamePin, quiz) -> games.add(new Game(gamePin, quiz)));
@@ -25,6 +26,15 @@ public class Main {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        finally {
+            if (serverSocket != null) {
+                try {
+                    serverSocket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
     }
