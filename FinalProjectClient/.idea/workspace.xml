@@ -6,59 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a013e740-a6de-426c-a542-3a8550da400d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/finalproject/Objects/users/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FinalProjectClient/com/finalproject/Objects/Quiz.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalProjectClient/com/finalproject/Objects/Quiz.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FinalProjectClient/com/finalproject/UI/UserUI$1$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FinalProjectClient/com/finalproject/UI/UserUI$1$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FinalProjectClient/com/finalproject/UI/UserUI$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FinalProjectClient/com/finalproject/UI/UserUI$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FinalProjectClient/com/finalproject/UI/UserUI$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FinalProjectClient/com/finalproject/UI/UserUI.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FinalProjectClient/com/finalproject/Writable.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FinalProjectClient/com/finalproject/logic/GameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalProjectClient/com/finalproject/logic/GameManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FinalProjectClient/com/finalproject/logic/server/ConnectionMethods.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalProjectClient/com/finalproject/logic/server/ConnectionMethods.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FinalProjectClient/com/finalproject/users/Admin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FinalProjectClient/com/finalproject/users/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/finalproject/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/finalproject/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/finalproject/Objects/Quiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/finalproject/Objects/Quiz.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/finalproject/Objects/UserAndScore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/finalproject/Objects/UserAndScore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/finalproject/UI/UserUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/finalproject/UI/UserUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/finalproject/Writable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/finalproject/interfaces/Writable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/finalproject/logic/ConsoleFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/finalproject/logic/ConsoleFunctions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/finalproject/logic/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/finalproject/logic/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/finalproject/logic/UserInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/finalproject/logic/UserInput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/finalproject/logic/server/AdminPlayerAnswer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/finalproject/logic/server/AdminPlayerAnswer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/finalproject/logic/server/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/finalproject/logic/server/ConnectionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/finalproject/logic/server/ConnectionMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/finalproject/logic/server/ConnectionMethods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/finalproject/logic/server/GameStateChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/finalproject/logic/server/GameStateChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/finalproject/logic/server/UserJoinThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/finalproject/logic/server/UserJoinThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/finalproject/users/Admin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/finalproject/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/finalproject/Objects/users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FinalProjectServer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectServer/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FinalProjectServer/out/production/FinalProject/com/finalproject/Admin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FinalProjectServer/out/production/FinalProject/com/finalproject/ClientThread$OnGameStartedListner.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FinalProjectServer/out/production/FinalProject/com/finalproject/ClientThread.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FinalProjectServer/out/production/FinalProject/com/finalproject/ConnectionMethods.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FinalProjectServer/out/production/FinalProject/com/finalproject/FileManger.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FinalProjectServer/out/production/FinalProject/com/finalproject/Game.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FinalProjectServer/out/production/FinalProject/com/finalproject/Main$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FinalProjectServer/out/production/FinalProject/com/finalproject/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectServer/out/production/FinalProject/com/finalproject/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FinalProjectServer/out/production/FinalProject/com/finalproject/Quiz$Question.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FinalProjectServer/out/production/FinalProject/com/finalproject/Quiz.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FinalProjectServer/out/production/FinalProject/com/finalproject/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FinalProjectServer/out/production/FinalProject/com/finalproject/Writable.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FinalProjectServer/src/com/finalproject/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectServer/src/com/finalproject/objects/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FinalProjectServer/src/com/finalproject/ClientThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectServer/src/com/finalproject/logic/ClientThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FinalProjectServer/src/com/finalproject/ConnectionMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectServer/src/com/finalproject/logic/ConnectionMethods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FinalProjectServer/src/com/finalproject/FileManger.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectServer/src/com/finalproject/filemanger/FileManger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FinalProjectServer/src/com/finalproject/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectServer/src/com/finalproject/logic/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FinalProjectServer/src/com/finalproject/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectServer/src/com/finalproject/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FinalProjectServer/src/com/finalproject/Quiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectServer/src/com/finalproject/objects/Quiz.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FinalProjectServer/src/com/finalproject/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectServer/src/com/finalproject/objects/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FinalProjectServer/src/com/finalproject/Writable.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectServer/src/com/finalproject/interfaces/Writable.java" afterDir="false" />
-    </list>
+    <list default="true" id="a013e740-a6de-426c-a542-3a8550da400d" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -124,7 +72,7 @@
     <session id="-377672884">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.5" value="1" />
@@ -328,7 +276,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/yan/IdeaProjects/FinalProject/KahootJavaConsole/FinalProjectClient/src/com/finalproject/Objects/Quiz.java" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544382049610" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544382054430" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -347,7 +295,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main (1)">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="IntFinder" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.finalproject.IntFinder" />
       <module name="FinalProjectClient" />
@@ -439,11 +387,9 @@
     <list>
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.IntFinder" />
-      <item itemvalue="Application.Main (1)" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.IntFinder" />
       </list>
@@ -481,10 +427,10 @@
       <window_info id="Capture Tool" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
       <window_info id="Structure" order="5" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="6" visible="true" weight="0.21101573" />
+      <window_info content_ui="combo" id="Project" order="6" visible="true" weight="0.21101573" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32907802" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3177305" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3177305" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />

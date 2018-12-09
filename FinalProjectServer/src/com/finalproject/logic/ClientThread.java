@@ -16,7 +16,9 @@ import static com.finalproject.filemanger.FileManger.getQuizPath;
 public class ClientThread extends Thread {
 
 
-
+    /**
+     * private finals
+     */
     private static final int CREATE_NEW_GAME = 100;
     private static final int GET_ADMIN_RESULTS = 209;
     private static final int CHECK_IF_GAME_EXISTS = 99;
@@ -37,17 +39,27 @@ public class ClientThread extends Thread {
     private static final int GET_ADMIN_QUESTION_RESULT = 135;
     private static final int CHECK_GAME_STATE = 45;
 
-
+    /**
+     * private object variables
+     */
     private Socket socket;
     private OutputStream outputStream;
     private InputStream inputStream;
     private OnGameStartedListener listener;
 
+    /**
+     * Creates a client thread, with socket and listener to handle new games
+     * @param socket the socket that connected to the server
+     * @param listener the listener that will handle the new game creating
+     */
     public ClientThread(Socket socket, OnGameStartedListener listener){
         this.socket = socket;
         this.listener = listener;
     }
 
+    /**
+     *  Handling the client request and sending to the method
+     */
     @Override
     public void run() {
         try {
@@ -107,6 +119,21 @@ public class ClientThread extends Thread {
 
     }
 
+    /**
+     * gets the game object from the Main games list
+     * @param gamePin game pin code to search for
+     * @return the game object, null if don't exists
+     */
+    private Game getGame(int gamePin){
+        for (int i = 0; i < Main.games.size(); i++) {
+            if(Main.games.get(i).getGamePin() == gamePin) return Main.games.get(i);
+        }
+        return null;
+    }
+    /**
+     * sends the client the question results
+     * @throws IOException if the inputStream is not waiting for a stream
+     */
     private void getAdminQuestionResult() throws IOException {
         Admin user = new Admin(inputStream);
         Game game = getGame(user.getGamePin());
@@ -117,14 +144,12 @@ public class ClientThread extends Thread {
                 ConnectionMethods.sendInt(game.getUsers().get(tempUser), outputStream);
             }
         }
+    }
 
-    }
-    private Game getGame(int gamePin){
-        for (int i = 0; i < Main.games.size(); i++) {
-            if(Main.games.get(i).getGamePin() == gamePin) return Main.games.get(i);
-        }
-        return null;
-    }
+    /**
+     * changes the game state to END_STATE
+     * @throws IOException if the client didn't send the Admin correctly
+     */
     private void adminStopGame() throws IOException{
         Admin user = new Admin(inputStream);
         Game game = getGame(user.getGamePin());
@@ -136,6 +161,11 @@ public class ClientThread extends Thread {
         }
     }
 
+    /**
+     * sends to the client the user in the server
+     * if recvived SEND_LAST_JOINED_USER than sends the last joined user to the client
+     * @throws IOException if inputStream or OutputStream was closed or was not waiting for stream
+     */
     private void getUsersInGame() throws IOException {
         Admin user = new Admin(inputStream);
         Game game = getGame(user.getGamePin());
@@ -146,6 +176,10 @@ public class ClientThread extends Thread {
         }
     }
 
+    /**
+     * sends total users and total answers to the client
+     * @throws IOException if the inputStream is not waiting for a stream
+     */
     private void getAdminResults() throws IOException {
         Admin user = new Admin(inputStream);
         Game game = getGame(user.getGamePin());
@@ -155,6 +189,10 @@ public class ClientThread extends Thread {
         }
     }
 
+    /**
+     * sends the user score
+     * @throws IOException if the inputStream is not waiting for a stream
+     */
     private void pullCurrentResults() throws IOException{
         User user = new User(inputStream);
         Game game = getGame(user.getGamePin());
@@ -163,6 +201,10 @@ public class ClientThread extends Thread {
         }
     }
 
+    /**
+     * gets the answer from the client, Updates his score accordingly
+     * @throws IOException if the user was not sent correctly
+     */
     private void sendAnswerToQuestion() throws IOException{
         User user = new User(inputStream);
         int userAnswer = ConnectionMethods.getInt(inputStream);
@@ -173,6 +215,11 @@ public class ClientThread extends Thread {
         }
     }
 
+    /**
+     * getting the current question for the client,
+     * and sending it back to the client
+     * @throws IOException if the inputStream is not waiting for a stream or user sent incorrectly
+     */
     private void pullCurrentQuestion() throws IOException{
         Admin user = new Admin(inputStream);
         Quiz quiz;
@@ -187,6 +234,11 @@ public class ClientThread extends Thread {
         }
     }
 
+    /**
+     * changing to next game state from client admin
+     * if last question and requesting next question, endGame method called
+     * @throws IOException if the user was not set correctly
+     */
     private void adminNextQuestion() throws IOException{
         Admin user = new Admin(inputStream);
         Game game = getGame(user.getGamePin());
@@ -204,6 +256,11 @@ public class ClientThread extends Thread {
         }
     }
 
+    /**
+     * getting admin user from the client and
+     * setting the game state to BEGIN_STATE, and letting users to join the game
+     * @throws IOException if the admin object was not sent correctly
+     */
     private void adminStartGame() throws IOException{
         Admin user = new Admin(inputStream);
         Game game = getGame(user.getGamePin());
@@ -213,6 +270,10 @@ public class ClientThread extends Thread {
         }
     }
 
+    /**
+     * gettting game pin from the user, and sending back the game state
+     * @throws IOException if the inputStream is not waiting for a stream
+     */
     private void checkGameState() throws IOException{
         int x = ConnectionMethods.getInt(inputStream);
         for (int i = 0; i < Main.games.size(); i++) {
@@ -223,6 +284,11 @@ public class ClientThread extends Thread {
         }
     }
 
+    /**
+     * adding user to a game, Getting user from the stream, if added
+     * sending back SUCCESSFULLY, if failed sending back -1
+     * @throws IOException if the inputStream is not waiting for a stream, or use was not sent correctly
+     */
     private void joinGame() throws IOException {
         User user = new User(inputStream);
         Game game = getGame(user.getGamePin());
@@ -234,6 +300,13 @@ public class ClientThread extends Thread {
         }
     }
 
+    /**
+     * Starting a new game from quiz file
+     * if password and name matches the files
+     * sending back the game pin code
+     * @throws IOException if the inputStream is not waiting for a stream or admin was not set correctly
+     * and don't hold the right quiz name and password
+     */
     private void startGame() throws IOException {
         Admin user = new Admin(inputStream);
         if(checkIfFileNPasswordMatch(user.getGameName(),user.getGamePassword())){
@@ -251,6 +324,12 @@ public class ClientThread extends Thread {
         }
     }
 
+    /**
+     * gets two strings from the client,
+     * if game and password match, sends TRUE, if don't match
+     * sends FALSE
+     * @throws IOException if the inputStream is not waiting for a stream or strings not sent correctly
+     */
     private void checkNameNpassword() throws IOException{
         String[] user = new String[2];
         user[0] = ConnectionMethods.getString(inputStream);
@@ -260,9 +339,22 @@ public class ClientThread extends Thread {
         else
             outputStream.write(FALSE);
     }
+
+    /**
+     * checks if name and password matches the quiz file
+     * @param fileName String of the quiz name
+     * @param password String of the quiz password
+     * @return true if correct password and name, false if not
+     */
     private boolean checkIfFileNPasswordMatch(String fileName, String password){
         return loadQuiz(fileName).getQuizPassword().equals(password);
     }
+
+    /**
+     * Loading quiz from string that holds the quiz name
+     * @param quizName a string of the quiz name
+     * @return Object of the quiz or null if don't exists
+     */
     private static Quiz loadQuiz(String quizName){
         File file = getQuizPath(quizName);
         InputStream is = null;
@@ -287,12 +379,21 @@ public class ClientThread extends Thread {
         return null;
 
     }
+
+    /**
+     * gets string from the client, Checks if the quiz exists, and sends back to the client the answer
+     * TRUE if exists FALSE if not
+     * @throws IOException if the inputStream is not waiting for a stream or the string not sent correctly
+     */
     private void checkIfExists() throws IOException{
         String fileName = ConnectionMethods.getString(inputStream);
         File file = getQuizPath(fileName);
         outputStream.write(file.exists()? TRUE: FALSE);
     }
 
+    /**
+     * gets quiz object from inputStream and safes it to a file
+     */
     private void createGame() {
         OutputStream ops = null;
         try {
