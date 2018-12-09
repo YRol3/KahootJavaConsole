@@ -1,9 +1,5 @@
-# Product Name
-> Short blurb about what your product does.
-
-[![NPM Version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
-[![Downloads Stats][npm-downloads]][npm-url]
+# Kahoot with only java
+> Server and client side for a kahoot game only in java
 
 This console kahoot game lets you play original game in the console
 Easy user UI and server that handles everything for you
