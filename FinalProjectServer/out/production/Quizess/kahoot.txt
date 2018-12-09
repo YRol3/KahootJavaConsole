@@ -1,2 +1,0 @@
-123456kahootHow big is the sun?
-695,508 km508 km103km1kmHow old is vladimir putin66 years old12 years old45 years old98 years old.Who is the 45th president of the united statesDonald TrumpBarak Obama	Josh boshBenjamin Netanyahu"How many planets are there in 2018810119CWhat is the output of "System.out.println(10 + 20 + "Javatpoint");""30Javatpoint""1020Javatpoint""10+20Javatpoint""10+20+Javapoint"CWhat is the output of "System.out.println("javatpoint" + 10 + 20);"javatpoint1020javatpoint30javatpoint+10+20javatpoint10+20

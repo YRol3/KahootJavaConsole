@@ -1,6 +1,7 @@
 package com.finalproject.Objects;
 
 import com.finalproject.Writable;
+import com.finalproject.logic.server.ConnectionMethods;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,54 +11,39 @@ import java.util.List;
 
 public class Quiz implements Writable {
 
+    public static final int OKAY = 10;
+    public static final int FAIL = -1;
     List<Question>  questions = new ArrayList<>();
-    String quitPassword;
+    String quizPassword;
     String quizName;
     private static final int QUESTION = 0;
     private static final int RIGHT_ANSWER = 1;
-    private static final int WRONG_ANSWER_1 = 2;
-    private static final int WRONG_ANSWER_2 = 3;
-    private static final int WRONG_ANSWER_3 = 4;
     public Quiz(InputStream inputStream) throws IOException{
-        int questionPasswordSize = inputStream.read();
-        byte[] buffer = new byte[questionPasswordSize];
-        int actuallyRead = inputStream.read(buffer);
-        if(actuallyRead != questionPasswordSize)
-            throw new IOException("Something went wrong");
-        this.quitPassword = new String(buffer);
-        int questionNameSize = inputStream.read();
-        buffer = new byte[questionNameSize];
-        actuallyRead = inputStream.read(buffer);
-        if(actuallyRead != questionNameSize)
-            throw new IOException("Something went wrong");
-        this.quizName = new String(buffer);
-        int questionArraySize = inputStream.read();
-        String[] strings = new String[5];
+        this.quizPassword = ConnectionMethods.getString(inputStream);
+        this.quizName = ConnectionMethods.getString(inputStream);
+        int questionArraySize = ConnectionMethods.getInt(inputStream);
         for (int i = 0; i < questionArraySize; i++) {
             Question question = new Question();
-            for (int j = 0; j < strings.length; j++) {
-                int stringSize = inputStream.read();
-                buffer = new byte[stringSize];
-                actuallyRead = inputStream.read(buffer);
-                if(actuallyRead !=  stringSize)
-                    throw new RuntimeException("Wrong InputStream");
-                strings[j] = new String(buffer);
+            for (int j = 0; j < 5; j++) {
+                String inputString = ConnectionMethods.getString(inputStream);
+                switch (j){
+                    case QUESTION: question.setQustion(inputString);
+                        break;
+                    case RIGHT_ANSWER: question.setRightAnswer(inputString);
+                        break;
+                    default: question.setWrongAnweser(j, inputString);
+                        break;
+                }
             }
-            question.setQustion(strings[QUESTION]);
-            question.setRightAnswer(strings[RIGHT_ANSWER]);
-            question.wrongAnwesers[0] = strings[WRONG_ANSWER_1];
-            question.wrongAnwesers[1] = strings[WRONG_ANSWER_2];
-            question.wrongAnwesers[2] = strings[WRONG_ANSWER_3];
             this.questions.add(question);
         }
     }
     public Quiz(){}
 
     public Quiz(String quitPassword, String quizName) {
-        this.quitPassword = quitPassword;
+        this.quizPassword = quitPassword;
         this.quizName = quizName;
     }
-
     /*
             Writing & reading order:
             a. password bytes length
@@ -72,26 +58,37 @@ public class Quiz implements Writable {
             6. wrong answer bytes length
             7. wrong answer bytes
      */
-    public void addQuestion(Question question){
-        questions.add(question);
-    }
     @Override
     public void write(OutputStream outputStream) throws IOException {
-        outputStream.write(quitPassword.getBytes().length);
-        outputStream.write(quitPassword.getBytes());
-        outputStream.write(quizName.getBytes().length);
-        outputStream.write(quizName.getBytes());
-        outputStream.write(questions.size());
+        ConnectionMethods.sendString(quizPassword, outputStream);
+        ConnectionMethods.sendString(quizName, outputStream);
+        ConnectionMethods.sendInt(questions.size(), outputStream);
         for(Question question: questions){
-            outputStream.write(question.qustion.getBytes().length);
-            outputStream.write(question.qustion.getBytes());
-            outputStream.write(question.rightAnswer.getBytes().length);
-            outputStream.write(question.rightAnswer.getBytes());
+            ConnectionMethods.sendString(question.qustion, outputStream);
+            ConnectionMethods.sendString(question.rightAnswer, outputStream);
             for(String wAnwsers: question.wrongAnwesers){
-                outputStream.write(wAnwsers.getBytes().length);
-                outputStream.write(wAnwsers.getBytes());
+                ConnectionMethods.sendString(wAnwsers, outputStream);
             }
         }
+    }
+
+    public void sendQuestion(OutputStream outputStream, int qusNum, int currentRightAnswer) throws IOException{
+        if(qusNum<questions.size()) {
+            Question muQuestion = questions.get(qusNum);
+            outputStream.write(OKAY);
+            ConnectionMethods.sendString(muQuestion.qustion, outputStream);
+            for (int i = 0; i < 4; i++) {
+                if(currentRightAnswer == i)
+                    ConnectionMethods.sendString(muQuestion.getRightAnswer(), outputStream);
+                if(i < 3)
+                    ConnectionMethods.sendString(muQuestion.getWrongAnwesers()[i], outputStream);
+            }
+        }else
+            outputStream.write(FAIL);
+    }
+
+    public void addQuestion(Question question) {
+        this.questions.add(question);
     }
 
     public static class Question{
@@ -107,20 +104,20 @@ public class Quiz implements Writable {
             this.rightAnswer = rightAnswer;
         }
 
-        public void setWrongAnwesers(String[] wrongAnwesers) {
-            this.wrongAnwesers = wrongAnwesers;
-        }
-
-        public String getQustion() {
-            return qustion;
-        }
-
-        public String[] getWrongAnwesers() {
+        private String[] getWrongAnwesers() {
             return wrongAnwesers;
         }
 
-        public String getRightAnswer() {
+        private String getRightAnswer() {
             return rightAnswer;
+        }
+
+        public void setWrongAnweser(int index, String wrongAnwesers) {
+            this.wrongAnwesers[index] = wrongAnwesers;
+        }
+
+        public void setWrongAnwesers(String[] answer) {
+            this.wrongAnwesers = answer;
         }
     }
 

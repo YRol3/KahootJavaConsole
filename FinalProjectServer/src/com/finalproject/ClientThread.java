@@ -2,10 +2,15 @@ package com.finalproject;
 
 import java.io.*;
 import java.net.Socket;
-import java.nio.ByteBuffer;
 import java.util.Random;
 
+import static com.finalproject.ConnectionMethods.*;
+import static com.finalproject.FileManger.getQuizPath;
+
+
 public class ClientThread extends Thread {
+
+
 
     private static final int CREATE_NEW_GAME = 100;
     private static final int GET_ADMIN_RESULTS = 209;
@@ -26,6 +31,7 @@ public class ClientThread extends Thread {
     private static final int ADMIN_STOP_GAME = 159;
     private static final int GET_ADMIN_QUESTION_RESULT = 135;
     private static final int CHECK_GAME_STATE = 45;
+
 
     Socket socket;
     OutputStream outputStream;
@@ -99,178 +105,138 @@ public class ClientThread extends Thread {
 
     private void getAdminQuestionResult() throws IOException {
         Admin user = new Admin(inputStream);
-        for (int i = 0; i < Main.games.size(); i++) {
-            if(Main.games.get(i).getGamePin() == user.getGamePin()){
-                sendInt(Main.games.get(i).getUsers().size());
-                for(User tempUser: Main.games.get(i).getUsers().keySet()){
-                    outputStream.write(tempUser.getUserName().getBytes().length);
-                    outputStream.write(tempUser.getUserName().getBytes());
-                    sendInt(Main.games.get(i).getUsers().get(tempUser));
-                }
+        Game game = getGame(user.getGamePin());
+        if(game != null) {
+            ConnectionMethods.sendInt(game.getUsers().size(), outputStream);
+            for (User tempUser : game.getUsers().keySet()) {
+                ConnectionMethods.sendString(tempUser.getUserName(), outputStream);
+                ConnectionMethods.sendInt(game.getUsers().get(tempUser), outputStream);
             }
         }
 
     }
-
+    private Game getGame(int gamePin){
+        for (int i = 0; i < Main.games.size(); i++) {
+            if(Main.games.get(i).getGamePin() == gamePin) return Main.games.get(i);
+        }
+        return null;
+    }
     private void adminStopGame() throws IOException{
         Admin user = new Admin(inputStream);
-        for (int i = 0; i < Main.games.size(); i++) {
-            if(Main.games.get(i).getGamePin() == user.getGamePin()){
-                if(Main.games.get(i).isAdmin(user)){
-                    Main.games.get(i).setGameState(user, 253);
-                    System.out.println("[SERVER] " + user.getUserName() + " has closed the game room with game pin code of " + user.getGamePin());
-                    break;
-                }
+        Game game = getGame(user.getGamePin());
+        if(game != null){
+            if(game.isAdmin(user)){
+                game.setGameState(user, END_STATE);
+                System.out.println("[SERVER] " + user.getUserName() + " has closed the game room with game pin code of " + user.getGamePin());
             }
         }
     }
 
     private void getUsersInGame() throws IOException {
         Admin user = new Admin(inputStream);
-        for (int i = 0; i < Main.games.size(); i++) {
-            if(Main.games.get(i).getGamePin() == user.getGamePin()){
-                sendInt(Main.games.get(i).getUsers().size());
-                if(inputStream.read() == SEND_LAST_JOINED_USER){
-                    outputStream.write(Main.games.get(i).getLastUser().getUserName().getBytes().length);
-                    outputStream.write(Main.games.get(i).getLastUser().getUserName().getBytes());
-                    break;
-                }
-            }
+        Game game = getGame(user.getGamePin());
+        if(game != null){
+            ConnectionMethods.sendInt(game.getUsers().size(), outputStream);
+            if(inputStream.read() == SEND_LAST_JOINED_USER)
+                ConnectionMethods.sendString(game.getLastUser().getUserName(), outputStream);
         }
     }
 
     private void getAdminResults() throws IOException {
         Admin user = new Admin(inputStream);
-        for (int i = 0; i < Main.games.size(); i++) {
-            if(Main.games.get(i).getGamePin() == user.getGamePin()){
-                sendInt(Main.games.get(i).getUsers().size());
-                sendInt(Main.games.get(i).getTotalAnswers());
-                break;
-            }
+        Game game = getGame(user.getGamePin());
+        if(game != null){
+            ConnectionMethods.sendInt(game.getUsers().size(), outputStream);
+            ConnectionMethods.sendInt(game.getTotalAnswers(), outputStream);
         }
-    }
-
-    private void sendInt(int num) throws IOException {
-        byte[] buffer = new byte[4];
-        ByteBuffer.wrap(buffer).putInt(num);
-        outputStream.write(buffer);
     }
 
     private void pullCurrentResults() throws IOException{
         User user = new User(inputStream);
-        for (int i = 0; i < Main.games.size(); i++) {
-            if(Main.games.get(i).getGamePin() == user.getGamePin()){
-                outputStream.write(Main.games.get(i).getUsers().get(user));
-                break;
-            }
+        Game game = getGame(user.getGamePin());
+        if(game != null){
+            ConnectionMethods.sendInt(game.getUsers().get(user), outputStream);
         }
     }
 
     private void sendAnswerToQuestion() throws IOException{
         User user = new User(inputStream);
-        int userAnswer = inputStream.read();
-        for (int i = 0; i < Main.games.size(); i++) {
-            if(Main.games.get(i).getGamePin() == user.getGamePin()){
-                Main.games.get(i).userAnswer(user,userAnswer);
-                Main.games.get(i).setTotalAnswers(Main.games.get(i).getTotalAnswers() + 1);
-                break;
-            }
+        int userAnswer = ConnectionMethods.getInt(inputStream);
+        Game game = getGame(user.getGamePin());
+        if(game != null){
+            game.userAnswer(user,userAnswer);
+            game.setTotalAnswers(game.getTotalAnswers() + 1);
         }
     }
 
     private void pullCurrentQuestion() throws IOException{
         Admin user = new Admin(inputStream);
-        Quiz quiz = new Quiz();
-        int currentRightAnswer = 0;
-        int currentQuestion = 0;
-        for (int i = 0; i < Main.games.size(); i++) {
-            if(Main.games.get(i).getGamePin() == user.getGamePin()){
-                quiz = Main.games.get(i).getQuiz();
-                currentQuestion = Main.games.get(i).getCurrentQuestion();
-                currentRightAnswer =Main.games.get(i).getCurrentRightAnswer();
-                break;
-            }
-        }
-        synchronized (quiz){
-            quiz.write(outputStream, currentQuestion, currentRightAnswer);
+        Quiz quiz;
+        int currentRightAnswer;
+        int currentQuestion;
+        Game game = getGame(user.getGamePin());
+        if(game != null){
+            quiz = game.getQuiz();
+            currentQuestion = game.getCurrentQuestion();
+            currentRightAnswer = game.getCurrentRightAnswer();
+            quiz.sendQuestion(outputStream, currentQuestion, currentRightAnswer);
         }
     }
 
     private void adminNextQuestion() throws IOException{
         Admin user = new Admin(inputStream);
-        for (int i = 0; i < Main.games.size(); i++) {
-            synchronized (Main.games.get(i)) {
-                if (Main.games.get(i).getGamePin() == user.getGamePin()) {
-                    Main.games.get(i).nextGameState(user);
-                    if(Main.games.get(i).getGameState() != 254 && Main.games.get(i).getGameState() != 255){
-                        if(Main.games.get(i).getGameState() >= Main.games.get(i).getQuiz().questions.size()){
-                            Main.games.get(i).endGame();
-                            return;
-                        }
-                        Random rand = new Random();
-                        Main.games.get(i).setCurrentRightAnswer(rand.nextInt(4));
-                        Main.games.get(i).setTotalAnswers(0);
-                        break;
-                    }
+        Game game = getGame(user.getGamePin());
+        if(game != null){
+            game.nextGameState(user);
+            if(game.getGameState() != RESULT_STATE && game.getGameState() != BEGIN_STATE){
+                if(game.getGameState() >= game.getQuiz().questions.size()){
+                    game.endGame();
+                    return;
                 }
+                Random rand = new Random();
+                game.setCurrentRightAnswer(rand.nextInt(4));
+                game.setTotalAnswers(0);
             }
         }
     }
 
     private void adminStartGame() throws IOException{
         Admin user = new Admin(inputStream);
-        for (int i = 0; i < Main.games.size(); i++) {
-            synchronized (Main.games.get(i)) {
-                if (Main.games.get(i).getGamePin() == user.getGamePin()) {
-                    Main.games.get(i).setCurrentQuestion(0);
-                    Main.games.get(i).setGameState(user, 255);
-                }
-            }
+        Game game = getGame(user.getGamePin());
+        if(game != null){
+            if (game.getGamePin() == user.getGamePin())
+                game.setGameState(user, BEGIN_STATE);
         }
     }
 
     private void checkGameState() throws IOException{
-        byte[] buffer = new byte[4];
-        int actullyRead = inputStream.read(buffer);
-        if(actullyRead != 4)
-            throw new IOException("someting went wrong");
-        int x = ByteBuffer.wrap(buffer).getInt();
+        int x = ConnectionMethods.getInt(inputStream);
         for (int i = 0; i < Main.games.size(); i++) {
-            synchronized (Main.games.get(i)){
-                if(Main.games.get(i).getGamePin() == x){
-                    outputStream.write(Main.games.get(i).getGameState());
-                    break;
-                }
+            if (Main.games.get(i).getGamePin() == x) {
+                ConnectionMethods.sendInt(Main.games.get(i).getGameState(), outputStream);
+                break;
             }
         }
     }
 
     private void joinGame() throws IOException {
         User user = new User(inputStream);
-        for (int i = 0; i < Main.games.size(); i++) {
-            synchronized (Main.games.get(i)){
-                if(Main.games.get(i).getGamePin() == user.getGamePin()){
-                    if(Main.games.get(i).addUser(user))
-                        outputStream.write(SUCCESSFULLY);
-                    else
-                        outputStream.write(-1);
-                    break;
-                }
-
-            }
+        Game game = getGame(user.getGamePin());
+        if(game != null){
+            if(game.addUser(user))
+                outputStream.write(SUCCESSFULLY);
+            else
+                outputStream.write(-1);
         }
-
     }
 
     private void startGame() throws IOException {
         Admin user = new Admin(inputStream);
         if(checkIfFileNPasswordMatch(user.getGameName(),user.getGamePassword())){
             Random rand = new Random();
-            byte[] buffer = new byte[4];
             int gamePin = rand.nextInt(1000000);
-            ByteBuffer.wrap(buffer).putInt(gamePin);
-            outputStream.write(buffer);
-            Quiz quiz = getQuiz(user.getGameName());
+            ConnectionMethods.sendInt(gamePin, outputStream);
+            Quiz quiz = loadQuiz(user.getGameName());
             listner.gameStarted(gamePin, quiz);
             System.out.println("[SERVER] "
                     + user.getUserName()
@@ -280,8 +246,21 @@ public class ClientThread extends Thread {
                     + user.getGameName());
         }
     }
-    private Quiz getQuiz(String quizName){
-        File file = new File("Quizess" +File.separator+ quizName + ".txt");
+
+    private void checkNameNpassword() throws IOException{
+        String[] user = new String[2];
+        user[0] = ConnectionMethods.getString(inputStream);
+        user[1] = ConnectionMethods.getString(inputStream);
+        if(checkIfFileNPasswordMatch(user[0], user[1]))
+            outputStream.write(TRUE);
+        else
+            outputStream.write(FALSE);
+    }
+    private boolean checkIfFileNPasswordMatch(String fileName, String password){
+        return loadQuiz(fileName).quizPassword.equals(password);
+    }
+    public static Quiz loadQuiz(String quizName){
+        File file = getQuizPath(quizName);
         InputStream is = null;
         try {
             is = new FileInputStream(file);
@@ -304,57 +283,17 @@ public class ClientThread extends Thread {
         return null;
 
     }
-    private String[] getNameNPasswordFromstream() throws IOException{
-        String[] strings = new String[2];
-        int stringLenght = inputStream.read();
-        byte[] buffer = new byte[stringLenght];
-        int actullyRead = inputStream.read(buffer);
-        if(actullyRead != stringLenght)
-            throw new IOException("Something went wrong");
-        strings[0] = new String(buffer);
-        stringLenght = inputStream.read();
-        buffer = new byte[stringLenght];
-        actullyRead = inputStream.read(buffer);
-        if(actullyRead != stringLenght)
-            throw new IOException("Something went wrong");
-        strings[1] = new String(buffer);
-        return  strings;
-    }
-    private void checkNameNpassword() throws IOException{
-
-        String[] user = getNameNPasswordFromstream();
-        if(checkIfFileNPasswordMatch(user[0], user[1]))
-            outputStream.write(TRUE);
-        else
-            outputStream.write(FALSE);
-    }
-    private boolean checkIfFileNPasswordMatch(String fileName, String password){
-        Quiz quiz = getQuiz(fileName);
-        return quiz.quitPassword.equals(password);
-    }
-
     private void checkIfExists() throws IOException{
-        int stringLenght = inputStream.read();
-        byte[] buffer = new byte[stringLenght];
-        int actullyRead = inputStream.read(buffer);
-        if(actullyRead != stringLenght)
-            throw new IOException("Something went wrong");
-        String fileName = new String(buffer);
-        File file = new File("Quizess" +File.separator+ fileName + ".txt");
-        if(file.exists())
-            outputStream.write(TRUE);
-        else
-            outputStream.write(FALSE);
-
+        String fileName = ConnectionMethods.getString(inputStream);
+        File file = getQuizPath(fileName);
+        outputStream.write(file.exists()? TRUE: FALSE);
     }
 
     private void createGame() {
-
         OutputStream ops = null;
         try {
             Quiz quiz = new Quiz(inputStream);
-
-            File file = new File("Quizess" +File.separator+ quiz.quizName + ".txt");
+            File file = getQuizPath(quiz.quizName);
             ops = new FileOutputStream(file);
             quiz.write(ops);
             System.out.println("[Server] Saved new quiz to the server hard disk memory " + file.getName());

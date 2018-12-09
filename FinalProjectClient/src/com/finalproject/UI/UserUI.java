@@ -2,13 +2,14 @@ package com.finalproject.UI;
 
 import com.finalproject.Objects.Quiz;
 import com.finalproject.Objects.UserAndScore;
-import com.finalproject.User;
-import com.finalproject.logic.ConnectionHandler;
+import com.finalproject.logic.server.ConnectionHandler;
 import com.finalproject.logic.UserInput;
-import com.finalproject.logic.servercheck.AdminPlayerAnswer;
-import com.finalproject.logic.servercheck.GameStateChecker;
-import com.finalproject.logic.servercheck.UserJoinThread;
+import com.finalproject.logic.server.AdminPlayerAnswer;
+import com.finalproject.logic.server.GameStateChecker;
+import com.finalproject.logic.server.UserJoinThread;
 import com.finalproject.users.Admin;
+import com.finalproject.users.User;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -16,29 +17,28 @@ import java.io.OutputStream;
 import static com.finalproject.logic.ConsoleFunctions.cleanScreen;
 import static com.finalproject.logic.GameManager.*;
 
-import java.net.UnknownHostException;
 import java.util.*;
 
-import static com.finalproject.logic.servercheck.AdminPlayerAnswer.*;
+import static com.finalproject.logic.server.AdminPlayerAnswer.*;
+import static com.finalproject.logic.server.ConnectionMethods.BEGIN_STATE;
+import static com.finalproject.logic.server.ConnectionMethods.END_STATE;
+import static com.finalproject.logic.server.ConnectionMethods.RESULT_STATE;
 
 
 public class UserUI {
 
 
 
-    boolean waitingForAnswer;
+    private boolean waitingForAnswer;
     private int userScore;
     private static final int JOIN_GAME = 22;
     private static final int SUCCESSFULLY = 150;
-    private static final int BEGIN_STATE = 255;
-    private static final int RESULT_STATE = 254;
-    private static final int END_STATE = 253;
     private Scanner scanner = new Scanner(System.in);
-    public static boolean firstTimeRunning = true;
+    private  static boolean firstTimeRunning = true;
     private int gameStates=-1;
     private AdminPlayerAnswer adminPlayerAnswer;
     private UserJoinThread userJoinThread;
-    User user;
+    private User user;
 
     public void startDialog(){
         if(!ConnectionHandler.checkConnection()){
@@ -121,7 +121,6 @@ public class UserUI {
                                         public void OnServerResponse(int totalPlayers, int totalAnswers) {
                                             cleanScreen();
                                             displayQuestion(user);
-                                            System.out.println();
                                             System.out.println(totalAnswers + " Answers out of " + totalPlayers);
                                             adminGameRoomTextDialog();
                                         }
@@ -197,8 +196,8 @@ public class UserUI {
             if(gameStates == BEGIN_STATE && !checkIfRoomHasPlayers(userJoinThread) && !firstMessage){
                 System.out.println("You need at lease one player to start the game");
             }
+            firstMessage = false;
             choose = scanner.nextLine();
-            firstMessage = true;
         }
         while(!UserInput.isNumberStatic(choose) || (gameStates == BEGIN_STATE && !checkIfRoomHasPlayers(userJoinThread) && !choose.contains("2") ));
 
@@ -333,11 +332,13 @@ public class UserUI {
 
     private void displayQuestion(User user) {
         List<String> question = pullCurrentQuestion(user);
-        System.out.println();
-        System.out.println("-------Question-------");
-        System.out.println(question.get(0));
-        for (int i = 1; i <question.size() ; i++) {
-            System.out.println((i)+". " + question.get(i));
+        if(question != null) {
+            System.out.println();
+            System.out.println("-------Question-------");
+            System.out.println(question.get(0));
+            for (int i = 1; i < question.size(); i++) {
+                System.out.println((i) + ". " + question.get(i));
+            }
         }
     }
 }

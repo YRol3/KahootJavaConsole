@@ -1,16 +1,14 @@
-package com.finalproject.logic.servercheck;
+package com.finalproject.logic.server;
 
-import com.finalproject.User;
-import com.finalproject.logic.ConnectionHandler;
+import com.finalproject.users.User;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.ByteBuffer;
 
 public class GameStateChecker extends Thread {
-    private final int CHECK_GAME_STATE = 45;
-    boolean isRunning;
+    private static final int CHECK_GAME_STATE = 45;
+    private boolean isRunning;
     private int lastGameState;
     private onGameStateChangeListener listener;
     private User user;
@@ -26,12 +24,10 @@ public class GameStateChecker extends Thread {
             OutputStream outputStream = connectionHandler.getOutputStream();
             InputStream inputStream = connectionHandler.getInputStream();
             try {
-                byte[] buffer = new byte[4];
-                ByteBuffer.wrap(buffer).putInt(user.getGamePin());
                 outputStream.write(CHECK_GAME_STATE);
-                outputStream.write(buffer);
-                int tempGameState = inputStream.read();
-                if (lastGameState != tempGameState) {
+                ConnectionMethods.sendInt(user.getGamePin(), outputStream);
+                int tempGameState = ConnectionMethods.getInt(inputStream);
+                if(lastGameState != tempGameState) {
                     listener.onGameStateChanged(tempGameState);
                     lastGameState = tempGameState;
                 }
@@ -48,12 +44,6 @@ public class GameStateChecker extends Thread {
                 }
             }
         }
-    }
-
-
-
-    public void killThread(){
-        isRunning=false;
     }
 
     public interface onGameStateChangeListener{

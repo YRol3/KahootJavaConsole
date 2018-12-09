@@ -6,7 +6,46 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="86d29376-18c0-4413-9401-8fd7864c7817" name="Default Changelist" comment="" />
+    <list default="true" id="86d29376-18c0-4413-9401-8fd7864c7817" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../FinalProjectClient/src/com/finalproject/logic/server/ConnectionMethods.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectClient/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectClient/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectClient/out/production/FinalProjectClient/com/finalproject/UI/UserUI$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectClient/out/production/FinalProjectClient/com/finalproject/UI/UserUI$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectClient/out/production/FinalProjectClient/com/finalproject/UI/UserUI$1$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectClient/out/production/FinalProjectClient/com/finalproject/UI/UserUI$1$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectClient/out/production/FinalProjectClient/com/finalproject/UI/UserUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectClient/out/production/FinalProjectClient/com/finalproject/UI/UserUI$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectClient/out/production/FinalProjectClient/com/finalproject/UI/UserUI$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectClient/out/production/FinalProjectClient/com/finalproject/UI/UserUI$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectClient/out/production/FinalProjectClient/com/finalproject/UI/UserUI$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectClient/out/production/FinalProjectClient/com/finalproject/UI/UserUI$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectClient/out/production/FinalProjectClient/com/finalproject/UI/UserUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectClient/out/production/FinalProjectClient/com/finalproject/UI/UserUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectClient/out/production/FinalProjectClient/com/finalproject/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectClient/out/production/FinalProjectClient/com/finalproject/logic/GameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectClient/out/production/FinalProjectClient/com/finalproject/logic/GameManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectClient/out/production/FinalProjectClient/com/finalproject/logic/servercheck/AdminPlayerAnswer$OnServerResponseListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectClient/out/production/FinalProjectClient/com/finalproject/logic/servercheck/AdminPlayerAnswer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectClient/out/production/FinalProjectClient/com/finalproject/logic/servercheck/GameStateChecker$onGameStateChangeListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectClient/out/production/FinalProjectClient/com/finalproject/logic/servercheck/GameStateChecker.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectClient/out/production/FinalProjectClient/com/finalproject/logic/servercheck/UserJoinThread$OnUserJoinListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectClient/out/production/FinalProjectClient/com/finalproject/logic/servercheck/UserJoinThread.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectClient/out/production/FinalProjectClient/com/finalproject/users/Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectClient/out/production/FinalProjectClient/com/finalproject/users/Admin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectClient/src/com/finalproject/Objects/Quiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectClient/src/com/finalproject/Objects/Quiz.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectClient/src/com/finalproject/UI/UserUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectClient/src/com/finalproject/UI/UserUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectClient/src/com/finalproject/logic/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectClient/src/com/finalproject/logic/server/ConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectClient/src/com/finalproject/logic/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectClient/src/com/finalproject/logic/GameManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectClient/src/com/finalproject/logic/servercheck/AdminPlayerAnswer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectClient/src/com/finalproject/logic/server/AdminPlayerAnswer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectClient/src/com/finalproject/logic/servercheck/GameStateChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectClient/src/com/finalproject/logic/server/GameStateChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectClient/src/com/finalproject/logic/servercheck/UserJoinThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectClient/src/com/finalproject/logic/server/UserJoinThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectClient/src/com/finalproject/users/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectClient/src/com/finalproject/users/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectClient/src/com/finalproject/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectClient/src/com/finalproject/users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Quizess/123.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Quizess/kahoot.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Quizess/yan.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalProject/com/finalproject/ClientThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalProject/com/finalproject/ClientThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Quizess/kahoot.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Quizess/yan.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/finalproject/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/finalproject/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/finalproject/ClientThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/finalproject/ClientThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/finalproject/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/finalproject/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/finalproject/Quiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/finalproject/Quiz.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/finalproject/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/finalproject/User.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -109,15 +148,18 @@
     <session id="-705036563">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
-          <entry key="project.open.time.0" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.closed" value="3" />
+          <entry key="project.open.time.0" value="2" />
+          <entry key="project.open.time.3" value="1" />
+          <entry key="project.open.time.4" value="1" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="html" value="1" />
           <entry key="iml" value="1" />
+          <entry key="java" value="12" />
           <entry key="xml" value="5" />
         </counts>
       </usages-collector>
@@ -125,13 +167,136 @@
         <counts>
           <entry key="HTML" value="1" />
           <entry key="IDEA_MODULE" value="1" />
+          <entry key="JAVA" value="12" />
           <entry key="XML" value="5" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="dummy" value="33" />
+          <entry key="java" value="2447" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="2447" />
+          <entry key="PLAIN_TEXT" value="33" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/finalproject/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/finalproject/Game.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="291">
+              <caret line="115" column="29" selection-start-line="115" selection-start-column="29" selection-end-line="115" selection-end-column="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#535#536#0" expanded="true" />
+                <element signature="e#563#564#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/finalproject/ClientThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="142">
+              <caret line="294" selection-start-line="294" selection-end-line="294" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/finalproject/Quiz.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="284">
+              <caret line="30" column="57" selection-start-line="30" selection-start-column="57" selection-end-line="30" selection-end-column="57" />
+              <folding>
+                <element signature="e#3931#3932#0" expanded="true" />
+                <element signature="e#3996#3997#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/finalproject/User.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#753#754#0" expanded="true" />
+                <element signature="e#783#784#0" expanded="true" />
+                <element signature="e#826#827#0" expanded="true" />
+                <element signature="e#864#865#0" expanded="true" />
+                <element signature="e#899#900#0" expanded="true" />
+                <element signature="e#930#931#0" expanded="true" />
+                <element signature="e#962#963#0" expanded="true" />
+                <element signature="e#992#993#0" expanded="true" />
+                <element signature="e#1035#1036#0" expanded="true" />
+                <element signature="e#1066#1067#0" expanded="true" />
+                <element signature="e#1114#1115#0" expanded="true" />
+                <element signature="e#1154#1155#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/finalproject/Admin.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="351">
+              <caret line="34" column="28" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1008#1009#0" expanded="true" />
+                <element signature="e#1029#1030#0" expanded="true" />
+                <element signature="e#1076#1077#0" expanded="true" />
+                <element signature="e#1111#1112#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/finalproject/ConnectionMethods.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="142">
+              <caret line="17" selection-start-line="17" selection-end-line="17" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/finalproject/FileManger.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="27" selection-start-line="27" selection-end-line="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -142,10 +307,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>addu</find>
-      <find>startga</find>
-      <find>143</find>
-      <find>user.getusername</find>
       <find>results</find>
       <find>system.out.println</find>
       <find>rightanswer</find>
@@ -172,6 +333,10 @@
       <find>pullcurr</find>
       <find>GET_ADMIN_QUESTION_RESULT</find>
       <find>PULL_CURRENT_QUESTION</find>
+      <find>path</find>
+      <find>PULL_CURRENT_RESULTS</find>
+      <find>CHECK_IF_NAME_AND_PASSWORD_CORRECT</find>
+      <find>getint</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -186,12 +351,15 @@
         <option value="$PROJECT_DIR$/src/com/finalproject/ClientHandle.java" />
         <option value="$PROJECT_DIR$/src/com/finalproject/Writeable.java" />
         <option value="$PROJECT_DIR$/src/com/finalproject/Readable.java" />
-        <option value="$PROJECT_DIR$/src/com/finalproject/Game.java" />
         <option value="$PROJECT_DIR$/src/com/finalproject/Main.java" />
+        <option value="$PROJECT_DIR$/src/com/finalproject/ConnectionHandler.java" />
         <option value="$PROJECT_DIR$/src/com/finalproject/User.java" />
         <option value="$PROJECT_DIR$/src/com/finalproject/Admin.java" />
-        <option value="$PROJECT_DIR$/src/com/finalproject/Quiz.java" />
+        <option value="$PROJECT_DIR$/src/com/finalproject/Game.java" />
+        <option value="$PROJECT_DIR$/src/com/finalproject/ConnectionMethods.java" />
+        <option value="$PROJECT_DIR$/src/com/finalproject/FileManger.java" />
         <option value="$PROJECT_DIR$/src/com/finalproject/ClientThread.java" />
+        <option value="$PROJECT_DIR$/src/com/finalproject/Quiz.java" />
       </list>
     </option>
   </component>
@@ -208,18 +376,13 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="FinalProjectServer" type="b2602c69:ProjectViewProjectNode" />
               <item name="FinalProjectServer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FinalProjectServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FinalProjectServer" type="462c0819:PsiDirectoryNode" />
-              <item name="Quizess" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="FinalProjectServer" type="b2602c69:ProjectViewProjectNode" />
@@ -236,7 +399,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -246,7 +409,7 @@
     <property name="GenerateAntBuildDialog.generateSingleFile" value="true" />
     <property name="GenerateAntBuildDialog.inclineRuntiemClasspath" value="true" />
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="finalprojectserver" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544127535352" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544317333351" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.0" />
@@ -268,6 +431,7 @@
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.finalproject.Main" />
+      <module name="FinalProject" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.finalproject.*" />
@@ -275,7 +439,6 @@
         </pattern>
       </extension>
       <method v="2">
-        <option name="Make" enabled="true" />
         <option name="Make" enabled="true" />
       </method>
     </configuration>
@@ -289,18 +452,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FinalProject.jar" type="JarApplication" factoryName="JAR Application" temporary="true">
+    <configuration name="FinalProject.jar" type="JarApplication" factoryName="JAR Application">
       <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/FinalProject_jar/FinalProject.jar" />
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.Main" />
       <item itemvalue="JAR Application.FinalProject.jar" />
+      <item itemvalue="Application.Main" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="JAR Application.FinalProject.jar" />
       </list>
     </recent_temporary>
   </component>
@@ -320,7 +482,7 @@
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="797" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2825465" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29470673" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -329,7 +491,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32907802" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8769671" weight="0.32907802" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.8769671" visible="true" weight="0.32907802" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.27092198" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -365,13 +527,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/finalproject/ClientHandle.java" />
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home/lib/src.zip!/java.base/java/io/File.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="220" column="31" selection-start-line="220" selection-start-column="31" selection-end-line="220" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home/lib/src.zip!/java.base/java/lang/Object.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
@@ -426,9 +581,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="61" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="61" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -436,75 +588,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
           <caret line="613" selection-start-line="613" selection-end-line="613" />
-          <folding>
-            <element signature="e#23003#23004#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Quizess/yan.txt">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/finalproject/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="11" column="55" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/finalproject/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-          <folding>
-            <element signature="method#Game#0;class#Game#0" />
-            <element signature="e#563#564#0" expanded="true" />
-            <element signature="method#setGameState#0;class#Game#0" />
-            <element signature="e#1582#1583#0" expanded="true" />
-            <element signature="e#1609#1610#0" expanded="true" />
-            <element signature="e#1913#1914#0" expanded="true" />
-            <element signature="e#1943#1944#0" expanded="true" />
-            <element signature="e#2844#2845#0" expanded="true" />
-            <element signature="e#2875#2876#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/finalproject/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="47" column="8" selection-end-line="84" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1171#1172#0" expanded="true" />
-            <element signature="e#1201#1202#0" expanded="true" />
-            <element signature="e#1244#1245#0" expanded="true" />
-            <element signature="e#1275#1276#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/finalproject/Admin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="30" column="29" selection-end-line="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/finalproject/ClientThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2640">
-          <caret line="178" column="5" selection-start-line="178" selection-start-column="5" selection-end-line="178" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1439#1440#0" expanded="true" />
-            <element signature="e#1477#1478#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FinalProject.iml">
       <provider selected="true" editor-type-id="text-editor" />
@@ -531,12 +619,116 @@
     <entry file="file://$PROJECT_DIR$/.idea/uiDesigner.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/finalproject/Quiz.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home/lib/src.zip!/java.base/java/io/FileSystem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="92" column="13" selection-start-line="92" selection-start-column="13" selection-end-line="92" selection-end-column="13" />
+        <state relative-caret-position="289">
+          <caret line="50" column="7" lean-forward="true" selection-start-line="50" selection-start-column="7" selection-end-line="50" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home/lib/src.zip!/java.base/java/io/File.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="232" column="57" selection-start-line="232" selection-start-column="57" selection-end-line="232" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home/lib/src.zip!/java.base/java/lang/Integer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1423">
+          <caret line="69" column="38" selection-start-line="69" selection-start-column="38" selection-end-line="69" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/finalproject/Admin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="34" column="28" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1008#1009#0" expanded="true" />
+            <element signature="e#1029#1030#0" expanded="true" />
+            <element signature="e#1076#1077#0" expanded="true" />
+            <element signature="e#1111#1112#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/finalproject/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/finalproject/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#753#754#0" expanded="true" />
+            <element signature="e#783#784#0" expanded="true" />
+            <element signature="e#826#827#0" expanded="true" />
+            <element signature="e#864#865#0" expanded="true" />
+            <element signature="e#899#900#0" expanded="true" />
+            <element signature="e#930#931#0" expanded="true" />
+            <element signature="e#962#963#0" expanded="true" />
+            <element signature="e#992#993#0" expanded="true" />
+            <element signature="e#1035#1036#0" expanded="true" />
+            <element signature="e#1066#1067#0" expanded="true" />
+            <element signature="e#1114#1115#0" expanded="true" />
+            <element signature="e#1154#1155#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/finalproject/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="115" column="29" selection-start-line="115" selection-start-column="29" selection-end-line="115" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#535#536#0" expanded="true" />
+            <element signature="e#563#564#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/finalproject/FileManger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/finalproject/ConnectionMethods.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/finalproject/ClientThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="294" selection-start-line="294" selection-end-line="294" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/finalproject/Quiz.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="30" column="57" selection-start-line="30" selection-start-column="57" selection-end-line="30" selection-end-column="57" />
+          <folding>
+            <element signature="e#3931#3932#0" expanded="true" />
+            <element signature="e#3996#3997#0" expanded="true" />
           </folding>
         </state>
       </provider>

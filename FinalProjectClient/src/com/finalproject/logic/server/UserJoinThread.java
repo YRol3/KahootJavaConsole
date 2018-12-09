@@ -1,13 +1,10 @@
-package com.finalproject.logic.servercheck;
+package com.finalproject.logic.server;
 
-import com.finalproject.logic.ConnectionHandler;
 import com.finalproject.users.Admin;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-
-import static com.finalproject.logic.servercheck.AdminPlayerAnswer.getIntFromInputStream;
 
 
 public class UserJoinThread extends Thread {
@@ -32,16 +29,11 @@ public class UserJoinThread extends Thread {
             try {
                 outputStream.write(GET_USERS_IN_GAME);
                 user.write(outputStream);
-                int tempTotal = getIntFromInputStream(inputStream);
+                int tempTotal = ConnectionMethods.getInt(inputStream);
                 if (tempTotal != totalUsers) {
                     totalUsers = tempTotal;
                     outputStream.write(SEND_LAST_JOINED_USER);
-                    int stringLenght = inputStream.read();
-                    byte[] buffer = new byte[stringLenght];
-                    int actuallyRead = inputStream.read(buffer);
-                    if (actuallyRead != stringLenght)
-                        throw new IOException("something went wrong with the input stream");
-                    String user = new String(buffer);
+                    String user = ConnectionMethods.getString(inputStream);
                     listener.onUserJoin(user);
                 }
                 sleep(100);

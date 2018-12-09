@@ -2,11 +2,15 @@ package com.finalproject;
 
 import java.util.HashMap;
 
+import static com.finalproject.ConnectionMethods.BEGIN_STATE;
+import static com.finalproject.ConnectionMethods.END_STATE;
+import static com.finalproject.ConnectionMethods.RESULT_STATE;
+
 public class Game{
     private User lastUser;
     private int gameState=0;
-    private int gameMaxScore;
-    private int currentQuestion=-1;
+    private int gameMaxScoreBonus;
+    private int currentQuestion;
     private int gamePin;
     private int totalAnswers;
     private int currentRightAnswer;
@@ -25,11 +29,11 @@ public class Game{
     public void nextGameState(Admin user){
         if(isAdmin(user)){
             if (this.gameState == currentQuestion) {
-                this.gameState = 254;
+                this.gameState = RESULT_STATE;
                 currentQuestion++;
             } else {
                 this.gameState = currentQuestion;
-                gameMaxScore = Users.size();
+                gameMaxScoreBonus = Users.size();
                 totalAnswers=0;
             }
         }
@@ -47,9 +51,6 @@ public class Game{
         this.totalAnswers = totalAnswers;
     }
 
-    public void printStateAndAnswer(){
-        System.out.println(this.gameState + " " + currentQuestion);
-    }
     public void setGameState(Admin user, int gameState){
         if(isAdmin(user)){
             this.gameState = gameState;
@@ -80,13 +81,13 @@ public class Game{
     }
 
     public boolean isAdmin(Admin user){
-        return user.getGameName().equals(quiz.quizName) && user.getGamePassword().equals(quiz.quitPassword);
+        return user.getGameName().equals(quiz.quizName) && user.getGamePassword().equals(quiz.quizPassword);
     }
 
 
 
     public boolean addUser(User user) {
-        if(gameState == 255){
+        if(gameState == BEGIN_STATE){
             Users.put(user,0);
             lastUser = user;
             System.out.println("[Games "+gamePin+"] successfully added user " + user.getUserName());
@@ -103,7 +104,7 @@ public class Game{
         if(Users.containsKey(user)){
             if(answer == currentRightAnswer) {
                 int userScore = Users.get(user);
-                userScore += gameMaxScore--;
+                userScore += gameMaxScoreBonus--;
                 Users.put(user, userScore);
                 return userScore;
             }
@@ -112,20 +113,7 @@ public class Game{
     }
 
     public void endGame() {
-        gameState = 253;
+        gameState = END_STATE;
     }
 
-    public String getHighestScorePlayer() {
-        int tempHighScore = -1;
-        User tempUser = new User();
-        for(User user: Users.keySet()){
-            for (int i = 0; i < Users.size(); i++) {
-                if(Users.get(user) >= tempHighScore){
-                    tempHighScore = Users.get(user);
-                    tempUser = user;
-                }
-            }
-        }
-        return tempUser.getUserName();
-    }
 }

@@ -2,22 +2,22 @@ package com.finalproject.logic;
 
 import com.finalproject.Objects.UserAndScore;
 import com.finalproject.Objects.Quiz;
-import com.finalproject.User;
-import com.finalproject.Writable;
-import com.finalproject.logic.servercheck.UserJoinThread;
+import com.finalproject.logic.server.ConnectionHandler;
+import com.finalproject.logic.server.ConnectionMethods;
+import com.finalproject.users.User;
 import com.finalproject.users.Admin;
+import com.finalproject.Writable;
+import com.finalproject.logic.server.UserJoinThread;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.UnknownHostException;
-import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-import static com.finalproject.logic.servercheck.AdminPlayerAnswer.getIntFromInputStream;
 
 public class GameManager {
 
@@ -55,11 +55,7 @@ public class GameManager {
         try {
             outputStream.write(GAME_START);
             user.write(outputStream);
-            byte[] bytes = new byte[4];
-            int actuallyRead = inputStream.read(bytes);
-            if (actuallyRead != 4)
-                throw new IOException("Wrong input stream waiting for 4 bytes but recived : " + actuallyRead);
-            user.setGamePin(ByteBuffer.wrap(bytes).getInt());
+            user.setGamePin(ConnectionMethods.getInt(inputStream));
             return true;
         } catch (UnknownHostException e) {
             e.printStackTrace();
@@ -77,16 +73,11 @@ public class GameManager {
         InputStream inputStream = connectionHandler.getInputStream();
         try {
             outputStream.write(CHECK_IF_NAME_AND_PASSWORD_CORRECT);
-            outputStream.write(name.getBytes().length);
-            outputStream.write(name.getBytes());
-            outputStream.write(password.getBytes().length);
-            outputStream.write(password.getBytes());
+            ConnectionMethods.sendString(name, outputStream);
+            ConnectionMethods.sendString(password, outputStream);
             switch (inputStream.read()) {
-                case TRUE: {
-                    return true;
-                }
-                case FALSE:
-                    return false;
+                case TRUE: return true;
+                case FALSE: return false;
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -149,13 +140,10 @@ public class GameManager {
         InputStream inputStream = connectionHandler.getInputStream();
         try {
             outputStream.write(CHECK_IF_GAME_EXISTS);
-            outputStream.write(name.getBytes().length);
-            outputStream.write(name.getBytes());
+            ConnectionMethods.sendString(name, outputStream);
             switch (inputStream.read()) {
-                case TRUE:
-                    return true;
-                case FALSE:
-                    return false;
+                case TRUE: return true;
+                case FALSE: return false;
             }
         } catch (UnknownHostException e) {
             e.printStackTrace();
@@ -211,20 +199,14 @@ public class GameManager {
         try {
             outputStream.write(GET_ADMIN_QUESTION_RESULT);
             user.write(outputStream);
-            int totalUsers = getIntFromInputStream(inputStream);
+            int totalUsers = ConnectionMethods.getInt(inputStream);
             for (int i = 0; i < totalUsers; i++) {
-                int stringLenght = inputStream.read();
-                byte[] buffer = new byte[stringLenght];
-                int actuallyRead = inputStream.read(buffer);
-                if (actuallyRead != stringLenght)
-                    throw new IOException("Something went wrong with the inputstream");
                 UserAndScore userScore = new UserAndScore();
-                userScore.setUserName(new String(buffer));
-                userScore.setScore(getIntFromInputStream(inputStream));
+                userScore.setUserName(ConnectionMethods.getString(inputStream));
+                userScore.setScore(ConnectionMethods.getInt(inputStream));
                 userScoreList.add(userScore);
             }
             Collections.sort(userScoreList);
-
            return userScoreList;
         } catch (UnknownHostException e) {
             e.printStackTrace();
@@ -236,25 +218,11 @@ public class GameManager {
         return null;
     }
     public static String userGetHighestScorePlayer(User user){
-        return adminPullCurrentResults(user).get(0).getUserName();
-    }
-
-    public static int pullCurrentResult(User user) {
-        ConnectionHandler connectionHandler = new ConnectionHandler();
-        OutputStream outputStream = connectionHandler.getOutputStream();
-        InputStream inputStream = connectionHandler.getInputStream();
-        try {
-            outputStream.write(PULL_CURRENT_RESULTS);
-            user.write(outputStream);
-            return inputStream.read();
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            connectionHandler.closeConnection();
-        }
-        return -1;
+        List<UserAndScore> userAndScoreList = adminPullCurrentResults(user);
+        if(userAndScoreList != null)
+            return userAndScoreList.get(0).getUserName();
+        else
+            return null;
     }
 
     public static List<String> pullCurrentQuestion(User user) {
@@ -267,20 +235,9 @@ public class GameManager {
             user.write(outputStream);
             if(inputStream.read() != OKAY)
                 return null;
-            int qStringLenght = inputStream.read();
-            byte[] buffer = new byte[qStringLenght];
-            int actuallyRead = inputStream.read(buffer);
-            if (qStringLenght != actuallyRead)
-                throw new IOException("Something went wrong with the input stream");
-            question.add(new String(buffer));
-            for (int i = 0; i < 4; i++) {
-                int answerLenght = inputStream.read();
-                buffer = new byte[answerLenght];
-                actuallyRead = inputStream.read(buffer);
-                if (answerLenght != actuallyRead)
-                    throw new IOException("Something went wrong with the inputstream");
-               question.add(new String(buffer));
-            }
+            question.add(ConnectionMethods.getString(inputStream));
+            for (int i = 0; i < 4; i++)
+               question.add(ConnectionMethods.getString(inputStream));
             return question;
         } catch (UnknownHostException e) {
             e.printStackTrace();
@@ -301,7 +258,7 @@ public class GameManager {
         try {
             outputStream.write(SEND_ANSWER_TO_QUESTION);
             user.write(outputStream);
-            outputStream.write(Integer.parseInt(string) - 1);
+            ConnectionMethods.sendInt(Integer.parseInt(string)-1, outputStream);
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -310,5 +267,21 @@ public class GameManager {
             connectionHandler.closeConnection();
         }
     }
-
+    public static int pullCurrentResult(User user) {
+        ConnectionHandler connectionHandler = new ConnectionHandler();
+        OutputStream outputStream = connectionHandler.getOutputStream();
+        InputStream inputStream = connectionHandler.getInputStream();
+        try {
+            outputStream.write(PULL_CURRENT_RESULTS);
+            user.write(outputStream);
+            return ConnectionMethods.getInt(inputStream);
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            connectionHandler.closeConnection();
+        }
+        return -1;
+    }
 }

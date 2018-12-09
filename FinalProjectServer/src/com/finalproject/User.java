@@ -3,7 +3,6 @@ package com.finalproject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.ByteBuffer;
 
 public class User implements Writable {
     private String userName;
@@ -14,19 +13,9 @@ public class User implements Writable {
 
     }
     public User(InputStream inputStream)throws IOException{
-        int stringLength = inputStream.read();
-        byte[] buffer = new byte[stringLength];
-        int actuallyRead = inputStream.read(buffer);
-        if(actuallyRead!=stringLength)
-            throw new IOException("Something went wrong with the stream");
-        userName = new String(buffer);
-        buffer = new byte[4];
-        actuallyRead = inputStream.read(buffer);
-        if(actuallyRead!=4)
-            throw new IOException("Something went wrong with the stream");
-        gamePin = ByteBuffer.wrap(buffer).getInt();
+        userName = ConnectionMethods.getString(inputStream);
+        gamePin = ConnectionMethods.getInt(inputStream);
         isAdmin = inputStream.read()==1;
-
     }
     public int getGamePin() {
         return gamePin;
@@ -54,21 +43,17 @@ public class User implements Writable {
 
     @Override
     public void write(OutputStream outputStream) throws IOException {
-        outputStream.write(userName.getBytes().length);
-        outputStream.write(userName.getBytes());
-        byte[] buffer = new byte[4];
-        ByteBuffer.wrap(buffer).putInt(gamePin);
-        outputStream.write(buffer);
+        ConnectionMethods.sendString(userName, outputStream);
+        ConnectionMethods.sendInt(gamePin, outputStream);
         outputStream.write(isAdmin? 1:0);
     }
 
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof User){
-            if(((User) obj).gamePin == gamePin && ((User) obj).userName.equals(userName)){
-                return true;
-            }
-        }
+        if(obj == null) return false;
+        if(obj == this) return true;
+        if(obj instanceof User)
+            return ((User) obj).gamePin == gamePin && ((User) obj).userName.equals(userName);
         return false;
     }
 

@@ -1,12 +1,10 @@
-package com.finalproject.logic.servercheck;
+package com.finalproject.logic.server;
 
-import com.finalproject.logic.ConnectionHandler;
 import com.finalproject.users.Admin;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.Socket;
 import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 
@@ -41,8 +39,8 @@ public class AdminPlayerAnswer extends Thread {
                 outputStream.write(GET_ADMIN_RESULTS);
                 user.write(outputStream);
                 int tempTotalPlayers, tempTotalAnswers;
-                tempTotalPlayers = getIntFromInputStream(inputStream);
-                tempTotalAnswers = getIntFromInputStream(inputStream);
+                tempTotalPlayers = ConnectionMethods.getInt(inputStream);
+                tempTotalAnswers = ConnectionMethods.getInt(inputStream);
                 synchronized (this) {
                     if (tempTotalAnswers != totalAnswers || tempTotalPlayers != totalPlayers || oneTimeSend) {
                         oneTimeSend = false;
@@ -68,13 +66,6 @@ public class AdminPlayerAnswer extends Thread {
         }
     }
 
-    public static int getIntFromInputStream(InputStream inputStream) throws IOException {
-        byte[] buffer = new byte[4];
-        int actuallyRead = inputStream.read(buffer);
-        if(actuallyRead!=4)
-            throw new IOException("Something went wrong with the input stream");
-        return ByteBuffer.wrap(buffer).getInt();
-    }
     public void wakeUpListener(){
         oneTimeSend = true;
     }

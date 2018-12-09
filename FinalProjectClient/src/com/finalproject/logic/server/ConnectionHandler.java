@@ -1,4 +1,4 @@
-package com.finalproject.logic;
+package com.finalproject.logic.server;
 
 import java.io.IOException;
 import java.io.InputStream;
