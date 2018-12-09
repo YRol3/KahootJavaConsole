@@ -6,7 +6,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a013e740-a6de-426c-a542-3a8550da400d" name="Default Changelist" comment="" />
+    <list default="true" id="a013e740-a6de-426c-a542-3a8550da400d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../FinalProjectServer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectServer/.idea/workspace.xml" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -300,7 +302,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/yan/IdeaProjects/FinalProject/KahootJavaConsole/FinalProjectClient/src/com/finalproject/Objects/Quiz.java" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544382054430" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544388815087" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -319,13 +321,26 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.Main (1)">
     <configuration name="IntFinder" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.finalproject.IntFinder" />
       <module name="FinalProjectClient" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.finalproject.Objects.users.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.finalproject.Main" />
+      <module name="FinalProjectClient" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.finalproject.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -411,9 +426,11 @@
     <list>
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.IntFinder" />
+      <item itemvalue="Application.Main (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.IntFinder" />
       </list>
@@ -443,6 +460,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="797" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Image Layers" order="0" />
       <window_info id="Designer" order="1" />

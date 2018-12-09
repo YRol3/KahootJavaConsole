@@ -226,7 +226,7 @@ public class UserUI {
                     adminPlayerAnswer = new AdminPlayerAnswer((Admin)user, (totalPlayers, totalAnswers) -> {
                         cleanScreen();
                         displayQuestion(user);
-                        System.out.println(totalAnswers + "Answers out of " + totalPlayers);
+                        System.out.println(totalAnswers + " Answers out of " + totalPlayers);
                         adminGameRoomTextDialog();
                     });
                     adminPlayerAnswer.start();
