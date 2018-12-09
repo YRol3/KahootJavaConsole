@@ -4,9 +4,9 @@ import com.finalproject.Objects.UserAndScore;
 import com.finalproject.Objects.Quiz;
 import com.finalproject.logic.server.ConnectionHandler;
 import com.finalproject.logic.server.ConnectionMethods;
-import com.finalproject.users.User;
-import com.finalproject.users.Admin;
-import com.finalproject.Writable;
+import com.finalproject.Objects.users.User;
+import com.finalproject.Objects.users.Admin;
+import com.finalproject.interfaces.Writable;
 import com.finalproject.logic.server.UserJoinThread;
 
 import java.io.IOException;
@@ -22,10 +22,10 @@ import java.util.Scanner;
 public class GameManager {
 
     private static Scanner scanner = new Scanner(System.in);
-    /*
-        private finals
+    /**
+     * private finals
      */
-    public static final int PULL_CURRENT_QUESTION = 144;
+    private static final int PULL_CURRENT_QUESTION = 144;
     private static final int OKAY = 10;
     private static final int CHECK_IF_NAME_AND_PASSWORD_CORRECT = 98;
     private static final int GAME_START = 97;
@@ -36,8 +36,8 @@ public class GameManager {
     private static final int GET_ADMIN_QUESTION_RESULT = 135;
     private static final int PULL_CURRENT_RESULTS = 143;
     private static final int SEND_ANSWER_TO_QUESTION = 133;
-    /*
-        public finals
+    /**
+     * public finals
      */
     public static final int ADMIN_STOP_GAME = 159;
     public static final int ADMIN_START_GAME = 104;
@@ -45,9 +45,12 @@ public class GameManager {
     public  static final int CREATE_NEW_QUIZ = 100;
 
 
-
-
-
+    /**
+     * gets the game pin from the server with user object
+     * and stores the game pin code inside the user
+     * @param user can be user/admin object
+     * @return true if successfully retrieved the game pin, false if failed
+     */
     public static boolean getGamePinFromServer(User user) {
         ConnectionHandler connectionHandler = new ConnectionHandler();
         OutputStream outputStream = connectionHandler.getOutputStream();
@@ -65,8 +68,14 @@ public class GameManager {
             connectionHandler.closeConnection();
         }
         return false;
-
     }
+
+    /**
+     * Checks if password and name matches the server quiz file
+     * @param name the quiz name
+     * @param password the quiz password
+     * @return true if match false if don't match
+     */
     public static boolean checkIfPasswordCorrect(String name, String password) {
         ConnectionHandler connectionHandler = new ConnectionHandler();
         OutputStream outputStream = connectionHandler.getOutputStream();
@@ -86,6 +95,11 @@ public class GameManager {
         }
         return false;
     }
+
+    /**
+     * Send quiz object to the server
+     * @param quiz the quiz object to send to the server
+     */
     public static void writeQuizToServer(Quiz quiz){
         ConnectionHandler connectionHandler = new ConnectionHandler();
         OutputStream outputStream = connectionHandler.getOutputStream();
@@ -99,6 +113,12 @@ public class GameManager {
             connectionHandler.closeConnection();
         }
     }
+
+    /**
+     * checks if room has any players
+     * @param userJoinThread the user Join thread that checks for user connections
+     * @return true if has atlease one please, false if less
+     */
     public static boolean checkIfRoomHasPlayers(UserJoinThread userJoinThread){
         if (userJoinThread != null) {
             if (userJoinThread.getTotalUsers() != 0)
@@ -106,6 +126,12 @@ public class GameManager {
         }
         return false;
     }
+
+    /**
+     * Sends command to a server with admin object
+     * @param admin the admin object that sends the command
+     * @param command the command to send
+     */
     public static void adminServerCommand(Admin admin, int command){
         ConnectionHandler connectionHandler = new ConnectionHandler();
         OutputStream outputStream = connectionHandler.getOutputStream();
@@ -120,6 +146,12 @@ public class GameManager {
             connectionHandler.closeConnection();
         }
     }
+
+    /**
+     * Sends writeable object to the server
+     * @param writable the object that implemented Writeable
+     * @param command the command to send
+     */
     public static void sendToServer(Writable writable, int command){
         ConnectionHandler connectionHandler = new ConnectionHandler();
         OutputStream outputStream = connectionHandler.getOutputStream();
@@ -134,6 +166,11 @@ public class GameManager {
         }
     }
 
+    /**
+     * Checks if game exists in the server
+     * @param name the game name
+     * @return true if exists, false if not
+     */
     public static boolean CheckIfGameExists(String name){
         ConnectionHandler connectionHandler = new ConnectionHandler();
         OutputStream outputStream = connectionHandler.getOutputStream();
@@ -155,6 +192,10 @@ public class GameManager {
         return false;
     }
 
+    /**
+     * Creating Quiz with scanner, Once created returns Quiz object
+     * @return the quiz object that created
+     */
     public static Quiz createGame() {
         System.out.print("Game name: ");
         String name = scanner.nextLine();
@@ -162,8 +203,7 @@ public class GameManager {
             System.out.println("Great name");
         }else{
             System.out.println("Please choose different name, This name already exists");
-            createGame();
-            return null;
+            return createGame();
         }
         System.out.println("I love it!, please choose an administrator password");
         System.out.print("Admin password: ");
@@ -191,6 +231,11 @@ public class GameManager {
         return quiz;
     }
 
+    /**
+     * Pulls the results for all players in the game with user object
+     * @param user object that holds the game pin code
+     * @return List of UserAndScore
+     */
     public static List<UserAndScore> adminPullCurrentResults(User user) {
         ConnectionHandler connectionHandler = new ConnectionHandler();
         OutputStream outputStream = connectionHandler.getOutputStream();
@@ -217,6 +262,12 @@ public class GameManager {
         }
         return null;
     }
+
+    /**
+     * Gets the highest score player from the game
+     * @param user the user object that holds the game pin code
+     * @return String of the user name with the highest score, null if failed
+     */
     public static String userGetHighestScorePlayer(User user){
         List<UserAndScore> userAndScoreList = adminPullCurrentResults(user);
         if(userAndScoreList != null)
@@ -225,6 +276,11 @@ public class GameManager {
             return null;
     }
 
+    /**
+     * Pulls the current question from the game
+     * @param user the user object that holds the game pin code
+     * @return List of strings that holds the question and 4 answers
+     */
     public static List<String> pullCurrentQuestion(User user) {
         ConnectionHandler connectionHandler = new ConnectionHandler();
         OutputStream outputStream = connectionHandler.getOutputStream();
@@ -249,6 +305,11 @@ public class GameManager {
         return null;
     }
 
+    /**
+     * Sending user answer to the server
+     * @param user the object that holds game pin code and user name
+     * @param string the answer 1-4 string
+     */
     public static void sendAnswer(User user, String string) {
         if(Integer.parseInt(string) > 4 || Integer.parseInt(string) < 1)
             return;
@@ -267,6 +328,12 @@ public class GameManager {
             connectionHandler.closeConnection();
         }
     }
+
+    /**
+     * Pull current results for the user, Shows the user score
+     * @param user the user object which holds the game pin code and the user name
+     * @return the user score int
+     */
     public static int pullCurrentResult(User user) {
         ConnectionHandler connectionHandler = new ConnectionHandler();
         OutputStream outputStream = connectionHandler.getOutputStream();

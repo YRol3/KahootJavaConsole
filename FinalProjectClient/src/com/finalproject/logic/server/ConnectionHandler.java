@@ -12,6 +12,10 @@ public class ConnectionHandler {
     Socket socket;
     private OutputStream outputStream;
     private InputStream inputStream;
+
+    /**
+     * Creates connection object with outputStream and inputStream
+     */
     public ConnectionHandler(){
         try {
             Socket socket = new Socket(HOST, PORT);
@@ -22,6 +26,11 @@ public class ConnectionHandler {
         }
 
     }
+
+    /**
+     * Checks if there is a connection to a server
+     * @return true if server is online, false if offline
+     */
     public static boolean checkConnection() {
         Socket socket = null;
         try {
@@ -43,6 +52,10 @@ public class ConnectionHandler {
         }
         return false;
     }
+
+    /**
+     * Closes the socket, outputStream, inputStream
+     */
     public void closeConnection(){
         if (outputStream != null) {
             try {
@@ -68,6 +81,9 @@ public class ConnectionHandler {
         }
     }
 
+    /*
+        Getters of the class
+     */
     public InputStream getInputStream() {
         return inputStream;
     }
